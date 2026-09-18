@@ -71,6 +71,13 @@ _STOP = {
     "tell",
     "me",
     "give",
+    "often",
+    "require",
+    "required",
+    "does",
+    "get",
+    "need",
+    "needed",
 }
 
 
@@ -87,13 +94,44 @@ def _content_tokens(query: str) -> list[str]:
     return [t for t in tokenize(query) if t not in _STOP and len(t) > 1]
 
 
+def _token_matches(token: str, blob: str) -> bool:
+    """Whole-token match; do not count parts of hyphenated compounds (air-oil)."""
+    t = token.lower()
+
+    def _standalone(word: str) -> bool:
+        return re.search(rf"(?<![a-z0-9-]){re.escape(word)}(?![a-z0-9-])", blob) is not None
+
+    if _standalone(t):
+        return True
+    candidates = []
+    for suffix in ("ed", "ing", "es", "s", "ly"):
+        if t.endswith(suffix) and len(t) > len(suffix) + 2:
+            stem = t[: -len(suffix)]
+            candidates.append(stem)
+            candidates.append(stem + "e")
+    for c in candidates:
+        if len(c) >= 3 and _standalone(c):
+            return True
+    return False
+
+
+def _docs_for_support(query: str, docs: list[Document]) -> list[Document]:
+    """When the query names equipment codes, only score support on matching docs."""
+    ents = extract_entities(query)
+    if not ents:
+        return docs
+    matched = [d for d in docs if extract_entities(d.search_text) & ents]
+    return matched if matched else docs
+
+
 def support_coverage(query: str, docs: list[Document]) -> float:
     """
     Fraction of *focus* query tokens found in retrieved texts.
 
     Equipment codes (P-200, C-100, …) identify which asset is meant but do not
     prove the asked attribute is present. Coverage is therefore computed primarily
-    over non-entity content tokens (e.g. motor, power, oil, warranty).
+    over non-entity content tokens (e.g. motor, power, oil, warranty), and only
+    against docs that mention those entities (avoids cross-doc leakage).
     """
     ents = extract_entities(query)
     ent_toks: set[str] = set()
@@ -107,16 +145,17 @@ def support_coverage(query: str, docs: list[Document]) -> float:
     if not focus:
         return 1.0
 
-    blob = " ".join(d.search_text for d in docs).lower()
+    scoped = _docs_for_support(query, docs)
+    blob = " ".join(d.search_text for d in scoped).lower()
     d_ents: set[str] = set()
-    for d in docs:
+    for d in scoped:
         d_ents |= extract_entities(d.search_text)
 
     # Entity must match when the query names one
     if ents and not (ents & d_ents):
         return 0.0
 
-    hit = sum(1 for t in focus if t in blob)
+    hit = sum(1 for t in focus if _token_matches(t, blob))
     return hit / len(focus)
 
 

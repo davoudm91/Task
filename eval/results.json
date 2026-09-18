@@ -1,0 +1,241 @@
+{
+  "n_answerable": 10,
+  "n_unanswerable": 6,
+  "baseline": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "abstain_recall_unanswerable": 0.0,
+    "counts": {
+      "hit@1": 10,
+      "hit@3": 10,
+      "abstain_tp": 0
+    }
+  },
+  "improved": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "citation_groundedness": 1.0,
+    "abstention": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "accuracy": 1.0,
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "tn": 10
+    },
+    "conflict_disclosure_rate": 1.0,
+    "counts": {
+      "hit@1": 10,
+      "hit@3": 10,
+      "grounded": 10,
+      "conflict_ok": 1,
+      "conflict_n": 1
+    }
+  },
+  "details": [
+    {
+      "id": "q01",
+      "answerable": true,
+      "retrieved": [
+        "DOC-03",
+        "DOC-01",
+        "DOC-02"
+      ],
+      "abstained": false,
+      "answer": "[DOC-03] The C-100 is a rotary screw air compressor. Rated output is 6 m3/min at 8 bar. Motor power is 37 kW. It includes an integrated air-oil separator and an after-cooler. Ambient operating temperature should stay below 40 degrees Celsius. Condensate must be drained daily. Citations: [DOC-03]",
+      "hit@1": true,
+      "hit@3": true
+    },
+    {
+      "id": "q02",
+      "answerable": true,
+      "retrieved": [
+        "DOC-10",
+        "DOC-08",
+        "DOC-16"
+      ],
+      "abstained": false,
+      "answer": "[DOC-10] Calibrate temperature sensors every 12 months. Use a reference thermometer at two points, near the low and high ends of the operating range. Adjust the offset and span so the reading matches the reference within tolerance. Log the as-found and as-left values. Citations: [DOC-10]",
+      "hit@1": true,
+      "hit@3": true
+    },
+    {
+      "id": "q03",
+      "answerable": true,
+      "retrieved": [
+        "DOC-04",
+        "DOC-11",
+        "DOC-03"
+      ],
+      "abstained": false,
+      "answer": "[DOC-04] Before starting the M-50 electric motor, confirm the isolation switch is off, verify insulation resistance, and ensure the coupling guard is fitted. Start in the no-load condition first. Check the direction of rotation against the arrow on the housing. Monitor current draw during the first minute; it must remain within the nameplate rating. Citations: [DOC-04]",
+      "hit@1": true,
+      "hit@3": true
+    },
+    {
+      "id": "q04",
+      "answerable": true,
+      "retrieved": [
+        "DOC-07",
+        "DOC-08",
+        "DOC-03"
+      ],
+      "abstained": false,
+      "answer": "[DOC-07] Code E-207 indicates an overpressure trip on pump units. When E-207 appears, stop the pump, inspect the pressure relief valve, and check for a blocked discharge line before restarting. Code E-208 indicates a dry-run condition. Reset only after the cause is cleared. Citations: [DOC-07]",
+      "hit@1": true,
+      "hit@3": true
+    },
+    {
+      "id": "q05",
+      "answerable": true,
+      "retrieved": [
+        "DOC-05",
+        "DOC-06",
+        "DOC-09"
+      ],
+      "abstained": false,
+      "answer": "[DOC-05] For F-30 axial fan units, the acceptable vibration velocity limit is 4.5 mm/s RMS measured at the bearing housing. Readings above this level indicate imbalance or bearing wear and require investigation. Measure in three axes during routine checks. [DOC-06] On F-30 fans, keep the vibration velocity at or below 4.5 mm/s RMS at the bearing. If the value rises above the limit, inspect for imbalance or a worn bearing. Take measurements along three axes at each inspection. Citations: [DOC-05], [DOC-06]",
+      "hit@1": true,
+      "hit@3": true
+    },
+    {
+      "id": "q06",
+      "answerable": true,
+      "retrieved": [
+        "DOC-01",
+        "DOC-02",
+        "DOC-07"
+      ],
+      "abstained": false,
+      "answer": "Conflicting information in the documents: DOC-01 states 16 bar; DOC-02 states 12 bar. Both sources are cited; a single authoritative value is not chosen. Citations: [DOC-01], [DOC-02]",
+      "hit@1": true,
+      "hit@3": true
+    },
+    {
+      "id": "q07",
+      "answerable": true,
+      "retrieved": [
+        "DOC-09",
+        "DOC-12",
+        "DOC-05"
+      ],
+      "abstained": false,
+      "answer": "[DOC-09] The BRG-4410 is a sealed deep-groove ball bearing used on several fan and motor assemblies. Its recommended replacement interval is 12000 operating hours or when vibration exceeds the unit limit, whichever comes first. Use the correct puller and do not reuse a bearing once removed. Citations: [DOC-09]",
+      "hit@1": true,
+      "hit@3": true
+    },
+    {
+      "id": "q08",
+      "answerable": true,
+      "retrieved": [
+        "DOC-12",
+        "DOC-02",
+        "DOC-03"
+      ],
+      "abstained": false,
+      "answer": "[DOC-12] General intervals: inspect belts and couplings monthly; lubricate applicable bearings per the equipment sheet; check instrument calibration yearly. Pumps are serviced every 2000 hours and compressors every 4000 hours. Keep a record of every intervention with date and technician. Citations: [DOC-12]",
+      "hit@1": true,
+      "hit@3": true
+    },
+    {
+      "id": "q09",
+      "answerable": true,
+      "retrieved": [
+        "DOC-14",
+        "DOC-11",
+        "DOC-07"
+      ],
+      "abstained": false,
+      "answer": "[DOC-14] In an emergency, press the nearest emergency stop, isolate the main supply, and notify the shift supervisor. Do not attempt repairs while the line is energized. After a shutdown, inspect for damage and record the event before any restart. Citations: [DOC-14]",
+      "hit@1": true,
+      "hit@3": true
+    },
+    {
+      "id": "q10",
+      "answerable": true,
+      "retrieved": [
+        "DOC-11",
+        "DOC-02",
+        "DOC-14"
+      ],
+      "abstained": false,
+      "answer": "[DOC-11] Before any maintenance, isolate all energy sources, apply a personal lock and tag, and verify zero energy. Only the person who applied a lock may remove it. Test the start control to confirm the equipment cannot operate. Restore energy only after all guards are refitted. Citations: [DOC-11]",
+      "hit@1": true,
+      "hit@3": true
+    },
+    {
+      "id": "u01",
+      "answerable": false,
+      "retrieved": [
+        "DOC-01",
+        "DOC-02",
+        "DOC-03"
+      ],
+      "abstained": true,
+      "answer": "Not found in the documents.",
+      "gate_reason": "low_support_coverage(0.33<0.4)"
+    },
+    {
+      "id": "u02",
+      "answerable": false,
+      "retrieved": [
+        "DOC-03",
+        "DOC-12",
+        "DOC-02"
+      ],
+      "abstained": true,
+      "answer": "Not found in the documents.",
+      "gate_reason": "low_support_coverage(0.00<0.4)"
+    },
+    {
+      "id": "u03",
+      "answerable": false,
+      "retrieved": [
+        "DOC-09",
+        "DOC-08",
+        "DOC-07"
+      ],
+      "abstained": true,
+      "answer": "Not found in the documents.",
+      "gate_reason": "low_support_coverage(0.00<0.4)"
+    },
+    {
+      "id": "u04",
+      "answerable": false,
+      "retrieved": [
+        "DOC-03",
+        "DOC-01",
+        "DOC-08"
+      ],
+      "abstained": true,
+      "answer": "Not found in the documents.",
+      "gate_reason": "score_below_threshold(0.149<0.18)"
+    },
+    {
+      "id": "u05",
+      "answerable": false,
+      "retrieved": [
+        "DOC-04",
+        "DOC-09",
+        "DOC-03"
+      ],
+      "abstained": true,
+      "answer": "Not found in the documents.",
+      "gate_reason": "low_support_coverage(0.33<0.4)"
+    },
+    {
+      "id": "u06",
+      "answerable": false,
+      "retrieved": [
+        "DOC-03",
+        "DOC-01",
+        "DOC-05"
+      ],
+      "abstained": true,
+      "answer": "Not found in the documents.",
+      "gate_reason": "low_support_coverage(0.00<0.4)"
+    }
+  ],
+  "use_llm": false
+}

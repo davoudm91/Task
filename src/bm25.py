@@ -11,9 +11,82 @@ from src.corpus_policy import Document
 
 _TOKEN_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)?", re.I)
 
+_BM25_STOP = {
+    "a",
+    "an",
+    "the",
+    "and",
+    "or",
+    "of",
+    "to",
+    "in",
+    "on",
+    "for",
+    "with",
+    "by",
+    "from",
+    "at",
+    "as",
+    "is",
+    "are",
+    "was",
+    "were",
+    "be",
+    "been",
+    "being",
+    "do",
+    "does",
+    "did",
+    "should",
+    "would",
+    "could",
+    "can",
+    "may",
+    "might",
+    "must",
+    "how",
+    "what",
+    "which",
+    "when",
+    "where",
+    "who",
+    "why",
+    "this",
+    "that",
+    "these",
+    "those",
+    "it",
+    "its",
+    "into",
+    "than",
+    "then",
+    "also",
+    "any",
+    "all",
+    "often",
+    "about",
+}
+
+
+def _light_stem(token: str) -> str:
+    t = token.lower()
+    for suffix in ("ation", "ing", "ed", "es", "s", "ly"):
+        if t.endswith(suffix) and len(t) > len(suffix) + 2:
+            stem = t[: -len(suffix)]
+            if suffix == "ation":
+                return stem + "ate" if not stem.endswith("ate") else stem
+            return stem + "e" if suffix == "ed" and not stem.endswith("e") else stem
+    return t
+
 
 def tokenize(text: str) -> list[str]:
-    return [t.lower() for t in _TOKEN_RE.findall(text or "")]
+    raw = [t.lower() for t in _TOKEN_RE.findall(text or "")]
+    out: list[str] = []
+    for t in raw:
+        if t in _BM25_STOP or len(t) <= 1:
+            continue
+        out.append(_light_stem(t))
+    return out
 
 
 class BM25Index:

@@ -23,7 +23,7 @@ TOP_N = 3
 RRF_K = 60
 
 # Abstention: calibrated on eval (see README). Cosine similarity after hybrid re-score.
-ABSTAIN_SCORE_THRESHOLD = 0.22
+ABSTAIN_SCORE_THRESHOLD = 0.18
 # Minimum fraction of non-entity content tokens that must appear in retrieved text.
 SUPPORT_TOKEN_COVERAGE = 0.40
 

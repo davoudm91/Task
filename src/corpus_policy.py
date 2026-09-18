@@ -24,22 +24,14 @@ class Document:
 
 
 def _fix_encoding(s: str) -> str:
-    """Normalize common mojibake / replacement for em dashes; do not invent content."""
+    """Normalize title mojibake for em dashes; never rewrite codes like P-200."""
     if not s:
         return s
-    # UTF-8 / Windows-1252 mojibake for em dash and similar
-    replacements = {
-        "\ufffd": "-",  # replacement character
-        "â€”": "—",
-        "â€“": "–",
-        "Ã¢â‚¬â€": "—",
-        "Â": "",
-    }
     out = s
-    for bad, good in replacements.items():
-        out = out.replace(bad, good)
-    # Collapse runs of replacement leftovers around dashes in titles
-    out = re.sub(r"\s*[—–\-]\s*", " — ", out)
+    # Only treat replacement/mojibake as a title separator when spaced (keeps P-200 intact)
+    out = re.sub(r"\s+\ufffd\s+", " — ", out)
+    out = out.replace("â€”", "—").replace("â€“", "–").replace("Ã¢â‚¬â€", "—")
+    out = out.replace("Â", "")
     out = re.sub(r"\s+", " ", out).strip()
     return unicodedata.normalize("NFKC", out)
 
