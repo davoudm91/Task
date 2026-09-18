@@ -1,0 +1,16 @@
+{"id": "q01", "question": "What is the rated output of the C-100 compressor?", "answerable": true, "expected_doc_ids": ["DOC-03"], "notes": "specs"}
+{"id": "q02", "question": "How often should temperature sensors be calibrated?", "answerable": true, "expected_doc_ids": ["DOC-10"], "notes": "calibration"}
+{"id": "q03", "question": "What should be checked before starting the M-50 motor?", "answerable": true, "expected_doc_ids": ["DOC-04"], "notes": "startup"}
+{"id": "q04", "question": "What does error code E-207 mean?", "answerable": true, "expected_doc_ids": ["DOC-07"], "notes": "error code exact match"}
+{"id": "q05", "question": "What is the acceptable vibration limit for F-30 fans?", "answerable": true, "expected_doc_ids": ["DOC-05", "DOC-06"], "notes": "near-duplicate cluster"}
+{"id": "q06", "question": "What is the maximum operating pressure of the P-200 pump?", "answerable": true, "expected_doc_ids": ["DOC-01", "DOC-02"], "expect_conflict": true, "notes": "conflicting 16 vs 12 bar"}
+{"id": "q07", "question": "What is the recommended replacement interval for bearing BRG-4410?", "answerable": true, "expected_doc_ids": ["DOC-09"], "notes": "bearing"}
+{"id": "q08", "question": "How often are compressors serviced under preventive maintenance?", "answerable": true, "expected_doc_ids": ["DOC-12"], "notes": "PM intervals"}
+{"id": "q09", "question": "What are the emergency shutdown steps?", "answerable": true, "expected_doc_ids": ["DOC-14"], "notes": "ESD"}
+{"id": "q10", "question": "What does lockout tagout require before maintenance?", "answerable": true, "expected_doc_ids": ["DOC-11"], "notes": "LOTO"}
+{"id": "u01", "question": "What is the motor power of pump P-200?", "answerable": false, "expected_doc_ids": [], "notes": "not in corpus"}
+{"id": "u02", "question": "How often should the C-100 oil be changed?", "answerable": false, "expected_doc_ids": [], "notes": "oil interval not stated"}
+{"id": "u03", "question": "What brand of lubricant is specified for BRG-4410?", "answerable": false, "expected_doc_ids": [], "notes": "brand not stated"}
+{"id": "u04", "question": "What are the specifications of boiler B-90?", "answerable": false, "expected_doc_ids": [], "notes": "nonexistent asset"}
+{"id": "u05", "question": "What is the warranty period for the M-50 motor?", "answerable": false, "expected_doc_ids": [], "notes": "warranty not in corpus"}
+{"id": "u06", "question": "What cooling water flow rate does the C-100 require?", "answerable": false, "expected_doc_ids": [], "notes": "cooling water not stated"}
