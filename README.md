@@ -105,4 +105,4 @@ eval/run_eval.py
 
 ## AI Usage
 
-AI coding assistance was used for boilerplate and for iterating on retrieval/abstention edge cases. Design choices (hybrid retrieval, score-based abstention before the LLM, conflict disclosure policy, eval design) were made and verified manually. After review, several assistant suggestions were corrected — notably a title-normalization regex that rewrote equipment codes such as `P-200` into spaced dashes, which would have broken entity matching.
+AI coding assistance was used. (Cursor)
