@@ -25,9 +25,10 @@ huggingface/
 # Eval / runtime artifacts (keep committed results intentional)
 # eval/results.json is committed for reproducibility of reported numbers
 
-# IDE / OS
+# IDE / OS / editor
 .idea/
 .vscode/
+.cursor/
 *.swp
 .DS_Store
 Thumbs.db
