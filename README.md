@@ -31,14 +31,14 @@ Metrics are written to `eval/results.json`.
 
 ## Diagnosis — why the baseline is weak
 
-| Issue | Effect |
-| --- | --- |
-| Top-1 dense only (`argmax`) | No multi-hit evidence; brittle ranking |
-| No keyword path | Exact codes (`E-207`, `BRG-4410`) under-served |
-| Title not indexed; chunk size 400 on short docs | Chunking is a no-op; titles unused |
-| No score / support gate | Always returns a chunk for unanswerable questions |
-| No conflict / near-dup policy | DOC-01 vs DOC-02 pressure conflict; DOC-05 ≈ DOC-06 |
-| Dirty titles | Em-dash / encoding noise in titles |
+| Issue                                           | Effect                                              |
+| ----------------------------------------------- | --------------------------------------------------- |
+| Top-1 dense only (`argmax`)                     | No multi-hit evidence; brittle ranking              |
+| No keyword path                                 | Exact codes (`E-207`, `BRG-4410`) under-served      |
+| Title not indexed; chunk size 400 on short docs | Chunking is a no-op; titles unused                  |
+| No score / support gate                         | Always returns a chunk for unanswerable questions   |
+| No conflict / near-dup policy                   | DOC-01 vs DOC-02 pressure conflict; DOC-05 ≈ DOC-06 |
+| Dirty titles                                    | Em-dash / encoding noise in titles                  |
 
 On this corpus, dense top-1 often finds the right doc for answerable queries, but abstention recall is 0% — the main industrial failure mode.
 
@@ -55,10 +55,10 @@ On this corpus, dense top-1 often finds the right doc for answerable queries, bu
 
 ## Models
 
-| Role | Model | Why |
-| --- | --- | --- |
-| Embeddings | `sentence-transformers/all-MiniLM-L6-v2` | Small, local, enough for short English passages |
-| Generation | `Qwen/Qwen3-1.7B-Base` | On-prem small LM; base model, so refusal is not trusted to it |
+| Role       | Model                                    | Why                                                           |
+| ---------- | ---------------------------------------- | ------------------------------------------------------------- |
+| Embeddings | `sentence-transformers/all-MiniLM-L6-v2` | Small, local, enough for short English passages               |
+| Generation | `Qwen/Qwen3-1.7B-Base`                   | On-prem small LM; base model, so refusal is not trusted to it |
 
 Weights live under `models/` after download (gitignored).
 
@@ -72,15 +72,15 @@ python -m eval.run_eval
 
 ### Results (extractive mode)
 
-| Metric | Baseline | Improved |
-| --- | ---: | ---: |
-| Retrieval Hit@1 | 100% | 100% |
-| Retrieval Hit@3 | 100% | 100% |
-| Abstain recall (unanswerable) | 0% | 100% |
-| Abstention precision | n/a | 100% |
-| Abstention accuracy | n/a | 100% |
-| Citation groundedness | n/a | 100% |
-| Conflict disclosure | n/a | 100% |
+| Metric                        | Baseline | Improved |
+| ----------------------------- | -------: | -------: |
+| Retrieval Hit@1               |     100% |     100% |
+| Retrieval Hit@3               |     100% |     100% |
+| Abstain recall (unanswerable) |       0% |     100% |
+| Abstention precision          |      n/a |     100% |
+| Abstention accuracy           |      n/a |     100% |
+| Citation groundedness         |      n/a |     100% |
+| Conflict disclosure           |      n/a |     100% |
 
 Interpretation: baseline retrieval is already strong on 16 short docs; the gain is trust (abstention + conflict disclosure). Thresholds in `src/config.py` (`ABSTAIN_SCORE_THRESHOLD=0.18`, `SUPPORT_TOKEN_COVERAGE=0.40`) were set using this eval set.
 
@@ -105,4 +105,4 @@ eval/run_eval.py
 
 ## AI Usage
 
-AI coding assistance was used. (Cursor)
+AI coding assistance was used. (Cursor) Also for evaluating and getting suggestion some AI assistances was used.
